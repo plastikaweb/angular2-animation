@@ -22,15 +22,23 @@ import {Component, trigger, state, style, transition, animate} from '@angular/co
             })),
             state('medium', style({
                 'background-color': 'blue',
-                transform: 'translateX(300px) scale(1.5)'
+                transform: 'translateX(100px) scale(1)'
             })),
             state('highlighted', style({
                 'background-color': 'yellow',
-                transform: 'translateX(-50px) scale(0.5)'
+                transform: 'translateX(0) scale(0.5)'
             })),
             transition('normal => medium', animate(300)),
             transition('medium => normal', animate(800)),
-            transition('highlighted <=> *', animate(500))
+            transition('highlighted <=> *', [
+                style({
+                    'background-color': 'orange'
+                }),
+                animate(1000, style({
+                    borderRadius: '50px'
+                })),
+                animate(500)
+            ])
         ])
     ]
 } )
